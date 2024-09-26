@@ -39,7 +39,7 @@ a:after {
 a {
   color: #999;
   word-wrap: break-word;
-  border-bottom: 1px solid;
+  border-bottom: 2px dotted;
   padding-bottom: 0;
   border-bottom-color: #777;
   -webkit-transition: all ease .2s;
@@ -78,7 +78,7 @@ h1 {
   line-height: 1.5rem;
   font-size: 1rem;
   font-weight: 600;
-  padding: 0.5% 2% 0.3% 2%;
+  padding: 0.5% 2% 0.5% 2%;
   border-radius: 10px;
 }
 
@@ -139,14 +139,14 @@ language img {
   height: 7%;
   width: 7%;
   margin: 2% 2% 2% 0%;
-  padding: 0.5% 1% 0.3% 1%;
+  padding: 0.4% 1% 0.5% 1%;
   transition: ease-in-out 0.3s;
-  border: 3px solid #ffffff00;
+  border: 2px solid rgba(255, 255, 255, 0);
   border-radius: 10px;
 }
 
 language img.selected {
-  border: 3px solid #fff;
+  border: 2px solid rgba(255, 255, 255, 0.7);
 }
 
 
