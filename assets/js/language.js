@@ -131,7 +131,7 @@ var languageSelector = {
         "fi": "Finnish",
         "fo": "Faroese",
         "fr": "French",
-        "en": "Latin",
+        "en": "Abc",
         "ka": "Georgian",
         "el": "Greek",
         "hr": "Croatian",
@@ -163,7 +163,7 @@ var languageSelector = {
         "pl": "Polish",
         "pt": "Portuguese",
         "ro": "Romanian",
-        "ru": "Cyrillic",
+        "ru": "Абв",
         "sv": "Swedish",
         "sl": "Slovenian",
         "sk": "Slovak",
@@ -252,7 +252,7 @@ var languageSelector = {
                                     }
                                     languageSelector.log(elements[c]);
                                     break;
-                                case 'IMG':
+                                case 'P':
                                     language = elements[c].getAttribute('lang');
                                     if(language != null && language != '') {
                                         langFlags[language] = elements[c];
@@ -294,8 +294,8 @@ var languageSelector = {
         if(languageTag && typeof language == 'string'){
             var lang = languageSelector.validateISO6391(language);
             if(lang && typeof languageSelector.elementOfScript.src == 'string'){
-                var imgElement = document.createElement('IMG');
-                imgElement.lang = lang;
+                var btnElement = document.createElement('P');
+                btnElement.lang = lang;
                 var thisScriptFile = languageSelector.elementOfScript.src;
                 var thisScriptBaseURL = thisScriptFile.substr(0, thisScriptFile.search(/\w+\.js$|\w+\.js\?.*$/));
                 var country = '';
@@ -313,16 +313,17 @@ var languageSelector = {
                     // Language code includes country code as well: en-GB, use the country code to show the correct flag
                     country = lang.substring(3, 6);
                 }
-                imgElement.src =  thisScriptBaseURL + languageSelector.flagPath + country.toUpperCase() + '.svg';
-                imgElement.addEventListener('click', languageSelector.changeLanguageClick);
+                btnElement.innerHTML = languageSelector.languageNameList[language];
+                btnElement.addEventListener('click', languageSelector.changeLanguageClick);
                 if(language == languageSelector.actualLanguage) {
-                    imgElement.className += ' selected';
+                    btnElement.className += ' selected';
                 }
-                languageSelector.elementsOfLanguageSelectors.push(imgElement);
-                languageTag.appendChild(imgElement);
+                languageSelector.elementsOfLanguageSelectors.push(btnElement);
+                languageTag.appendChild(btnElement);
             }
         }
     },
+    
     
     //
     // insertSelectOption(languageTag, language) function inserts language option in SELECT elements in LANGUAGE tag
@@ -488,7 +489,7 @@ var languageSelector = {
                         case 'SELECT':
                                 languageSelector.elementsOfLanguageSelectors[c].value = languageSelector.actualLanguage;
                             break;
-                        case 'IMG':
+                        case 'P':
                             languageSelector.elementsOfLanguageSelectors[c].className = languageSelector.elementsOfLanguageSelectors[c].className.replace(/\ selected/g, '');
                             if(languageSelector.elementsOfLanguageSelectors[c].getAttribute('lang') == languageSelector.actualLanguage){
                                 // The element is the selected language element
